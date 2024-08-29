@@ -2,24 +2,4 @@
 @tailwind components;
 @tailwind utilities;
 
-.light-theme {
-    --bg-color: #ffffff;
-    --text-color: #000000;
-    --slider-color:#000000;
-  }
-  
-.dark-theme {
-    --bg-color: #1a202c;
-    --text-color: #ffffff;
-    --slider-color:#000000;
-  }
-  
-  body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    background-color: var(--slider-color);
-  }
-  .slider{
-    background-color: var(--slider-color);
-  }
 
