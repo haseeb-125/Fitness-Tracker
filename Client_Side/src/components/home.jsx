@@ -1,9 +1,10 @@
 import React from 'react';
-import Header from './Home Page Components/Header';
+import Header from './HomePageComponent/Header.jsx';
 
 const Home = ()=> {
   return (
    <Header/>
+   
   );
 }
 

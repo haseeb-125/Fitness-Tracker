@@ -6,8 +6,12 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {},
-      fontFamily: {  }
+      colors: {
+        orangecolor:"#ff2929",
+      },
+      fontFamily: { 
+          oswald: ['Oswald', 'sans-serif'], // Add the Oswald font here
+       }
     },
   },
   plugins: [],
