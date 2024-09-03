@@ -1,26 +1,58 @@
 import React, { useEffect, useState } from 'react';
 import logo from "../../assets/logo-2.svg"
-import logo1 from "../../assets/icon.png"
 import { Link } from 'react-router-dom';
+import sliderpicture1 from '../../assets/sp6.png'
+import sliderpicture2 from '../../assets/sp2.png'
+import sliderpicture3 from '../../assets/sp3.png'
+import { motion, AnimatePresence } from "framer-motion";
+
+const textVariants = {
+    hidden: { opacity: 0, y: 50 },  // Start below and invisible
+    visible: (i) => ({
+        opacity: 1,
+        y: 0,  // End at the original position
+        transition: {
+            delay: i * 0.2,  // Delay each item based on its index
+            duration: 0.5,
+            ease: "easeInOut",
+        },
+    }),
+};
+const imageVariants = {
+    initial: { opacity: 0 },  // Start hidden
+    animate: { opacity: 1 },  // Fade in
+    exit: { opacity: 0 },     // Fade out
+    transition: {
+        duration: 0.5,          // Smooth transition duration
+        ease: "easeInOut",
+    },
+};
+
 const Header = () => {
     const slides = [
         {
             id: 1,
-            image: 'https://via.placeholder.com/300x300.png?text=Image+1',
-            title: 'Slide 1 Title',
-            description: 'This is the description for slide 1.',
+            image: sliderpicture3,
+            text: "HIGH INTENSITY",
+            title: 'WORKOUT',
+            description: "FOR WEIGHT LOSS",
+            phoneNo: "+51561651165"
         },
         {
             id: 2,
-            image: 'https://via.placeholder.com/300x300.png?text=Image+2',
-            title: 'Slide 2 Title',
-            description: 'This is the description for slide 2.',
+            image: sliderpicture1,
+            text: "HIGH INTENSITY",
+            title: 'WORKOUT',
+            description: "FOR MUSCLE GAIN",
+            phoneNo: "+56561561656"
         },
         {
             id: 3,
-            image: 'https://via.placeholder.com/300x300.png?text=Image+3',
-            title: 'Slide 3 Title',
-            description: 'This is the description for slide 3.',
+            image: sliderpicture2,
+            text: " Wellnss & relaxing",
+            title: 'YOGA',
+            description: "FOR FLOURISHING AND GOOG HEALTH ",
+            phoneNo: "+789513898"
         },
     ];
 
@@ -74,7 +106,7 @@ const Header = () => {
                             />
 
                             {/* Hover Menu */}
-                            <ul className="absolute right-0 mt-1 bg-white text-gray-300 rounded shadow-lg p-2 space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                            <ul className="absolute right-0 bg-white text-gray-700 rounded shadow-lg p-2 space-y-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-50">
                                 <li><a href="#" className="hover:text-orangecolor font-oswald">Profile</a></li>
                                 <li><a href="#" className="hover:text-orangecolor font-oswald">Settings</a></li>
                                 <li><a href="#" className="hover:text-orangecolor font-oswald">Logout</a></li>
@@ -86,40 +118,60 @@ const Header = () => {
                     </header>
 
                     {/* Slider Section */}
-                    <div className="flex w-full h-screen">
-
+                    <div className="flex w-full h-screen relative">
                         {/* Text Section */}
-                        <div className="w-1/2 h-full flex flex-col justify-center p-8">
-                            <div className="transition-transform transform translate-y-0">
-                                <h2 className="text-4xl font-bold mb-4">{slides[currentSlide].title}</h2>
-                                <p className="text-lg mb-8">{slides[currentSlide].description}</p>
-                                <button className="px-6 py-3 bg-blue-600 text-white font-bold rounded">
-                                    Learn More
-                                </button>
+                        <div className="w-1/2 h-3/5 flex flex-col justify-center p-8 pt-0 " data-aos="fade-up">
+                            <motion.div className="transition-transform transform translate-y-0"
+                                initial="hidden"
+                                animate="visible"
+                                key={currentSlide} // Ensures animation runs on slide change
+                            >
+                                <motion.p className="text-lg mb-4  text-orangecolor uppercase font-oswald" custom={0}  // Index 0 for the title
+                                    variants={textVariants} >{slides[currentSlide].text}</motion.p>
+                                <motion.h2 className="text-4xl font-extrabold mb-5 text-white"
+                                    custom={1} variants={textVariants}>{slides[currentSlide].title}</motion.h2>
+                                <motion.p className="text-xl font-oswald mb-8 text-white"
+                                    custom={2} variants={textVariants}>{slides[currentSlide].description}</motion.p>
+                                <motion.div className="flex items-center"
+                                    custom={3} variants={textVariants}>
+                                    <p className="text-xs translate-y-2.5 mb-5 w-3/12 font-oswald text-white">
+                                        {slides[currentSlide].phoneNo}
+                                    </p>
+                                    <button className="px-2 py-1 bg-orangecolor border-2 border-orangecolor text-sm text-white font-oswald hover:bg-transparent rounded">
+                                        START CONSULTING
+                                    </button>
+                                </motion.div>
+                            </motion.div>
+                            {/* Navigation Buttons */}
+                            <div className="flex space-x-5 mt-8">
+                                {slides.map((slide, index) => (
+                                    <button
+                                        key={slide.id}
+                                        className={`w-6 h-0.5 rounded-sm ${currentSlide === index ? 'bg-orangecolor' : 'bg-gray-300'
+                                            }`}
+                                        onClick={() => handleSlideChange(index)}
+                                    ></button>
+                                ))}
                             </div>
                         </div>
 
                         {/* Image Section */}
-                        <div className="w-1/2 h-full flex items-center justify-center">
-                            <img
-                                src={slides[currentSlide].image}
-                                alt={`Slide ${currentSlide + 1}`}
-                                className="w-3/4 h-3/4 object-cover"
-                                height={100} width={100}
-                            />
-                        </div>
-                        {/* Navigation Buttons */}
-                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-4">
-                            {slides.map((slide, index) => (
-                                <button
-                                    key={slide.id}
-                                    className={`w-4 h-4 rounded-full ${currentSlide === index ? 'bg-blue-600' : 'bg-gray-300'
-                                        }`}
-                                    onClick={() => handleSlideChange(index)}
-                                ></button>
-                            ))}
+                        <div className="w-1/2 h-full flex items-center justify-center relative">
+                            <AnimatePresence mode='wait'>
+                                <motion.img
+                                    key={slides[currentSlide].image}  // Ensure a unique key for each image
+                                    src={slides[currentSlide].image}
+                                    alt={`Slide ${currentSlide + 1}`}
+                                    className="w-3/4 h-3/5 object-contain transform -translate-y-1/4"
+                                    initial="initial"
+                                    animate="animate"
+                                    exit="exit"
+                                    variants={imageVariants}
+                                />
+                            </AnimatePresence>
                         </div>
                     </div>
+
                 </div>
             </div>
         </>
