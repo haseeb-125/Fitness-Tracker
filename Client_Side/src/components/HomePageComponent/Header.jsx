@@ -77,7 +77,7 @@ const Header = () => {
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0">
                     <div className="bg-black-blur h-full w-full"></div>
-                    <div className="absolute inset-0 bg-black opacity-70"></div>
+                    <div className="absolute inset-0 bg-black opacity-80"></div>
                 </div>
 
                 {/* Content */}
