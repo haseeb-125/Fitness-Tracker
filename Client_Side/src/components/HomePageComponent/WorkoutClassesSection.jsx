@@ -1,9 +1,13 @@
 import React from 'react';
 import logoicon from "../../assets/icon.png";
+import { LuDumbbell } from "react-icons/lu";
+import { GiBodyBalance } from "react-icons/gi";
+import { MdAccessTime } from "react-icons/md";
+import { Link } from 'react-router-dom';
 const WorkoutClassesSection = () => {
   return (
     <>
-      <div className="py-16 bg-gray-100 bg-blackcolor">
+      <div className="py-16 bg-blackcolor">
         <section className="gap-10 text-center">
           <div className="mb-8">
             <figure className="inline-block mb-4">
@@ -15,33 +19,51 @@ const WorkoutClassesSection = () => {
           <div className="container mx-auto">
             <div className="flex justify-center gap-6">
               {/* Card 1 */}
-              <div className="service-data  bg-blackcolor border-gray-500 border  shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-orangecolor">
-                <i className="text-4xl text-primary mb-4"></i>
-                <p className=" text-gray-400 font-oswald text-xs hover:text-white px-6 py-16"><h3 className="text-xl  text-white font-semibold mb-2 font-oswald uppercase"><a href="service-detail.html">exercise cycle</a></h3>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a className="icon text-primary" href="service-detail.html">
-                  <i className="fa-solid fa-angles-right"></i>
-                </a>
+              <div className="service-data bg-blackcolor border-gray-500 border shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-orangecolor group">
+                {/* Icon */}
+                <LuDumbbell className='text-orangecolor text-2xl m-auto translate-y-10 transition-colors duration-300 group-hover:text-white' />
+
+                {/* Description */}
+                <div className="px-6 py-16">
+                  <h3 className="text-xl text-white font-semibold mb-2 font-oswald uppercase">
+                    <Link>exercise cycle</Link>
+                  </h3>
+                  <p className="text-gray-400 font-oswald text-xs transition-colors duration-300 group-hover:text-white">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </p>
+                </div>
               </div>
 
               {/* Card 2 */}
-              <div className="service-data  bg-blackcolor border-gray-500 border  shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-orangecolor">
-                <i className="flaticon-gym-equipment text-4xl text-primary mb-4"></i>
-                <p className=" text-gray-400 font-oswald text-xs hover:text-white px-6 py-16"><h3 className="text-xl  text-white font-semibold mb-2 font-oswald uppercase "><a href="service-detail.html">Expert Trainers</a></h3>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a className="icon text-primary" href="service-detail.html">
-                  <i className="fa-solid fa-angles-right"></i>
-                </a>
+              <div className="service-data bg-blackcolor border-gray-500 border shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-orangecolor group">
+                {/* Icon */}
+                <GiBodyBalance className='text-orangecolor  text-2xl m-auto translate-y-10 transition-colors duration-300 group-hover:text-white' />
+
+                {/* Description */}
+                <div className="px-6 py-16">
+                  <h3 className="text-xl text-white font-semibold mb-2 font-oswald uppercase">
+                    <Link>Expert Trainers</Link>
+                  </h3>
+                  <p className="text-gray-400 font-oswald text-xs transition-colors duration-300 group-hover:text-white">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </p>
+                </div>
               </div>
 
               {/* Card 3 */}
-              <div className="service-data  bg-blackcolor border-gray-500 border  shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-orangecolor">
-                <i className="flaticon-gym-equipment text-4xl text-primary mb-4"></i>
-                <p className=" text-gray-400 font-oswald text-xs hover:text-white px-6 py-16"><h3 className="text-xl  text-white font-semibold mb-2 font-oswald uppercase"><a href="service-detail.html">Workout Schedule</a></h3>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <a className="icon text-primary" href="service-detail.html">
-                  <i className="fa-solid fa-angles-right"></i>
-                </a>
+              <div className="service-data bg-blackcolor border-gray-500 border shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-orangecolor group">
+                {/* Icon */}
+                <MdAccessTime className='text-orangecolor  text-2xl m-auto translate-y-10 transition-colors duration-300 group-hover:text-white' />
+
+                {/* Description */}
+                <div className="px-6 py-16">
+                  <h3 className="text-xl text-white font-semibold mb-2 font-oswald uppercase">
+                    <Link>Workout Schedule</Link>
+                  </h3>
+                  <p className="text-gray-400 font-oswald text-xs transition-colors duration-300 group-hover:text-white">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

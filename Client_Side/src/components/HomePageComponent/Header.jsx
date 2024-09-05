@@ -3,7 +3,7 @@ import logo from "../../assets/logo-2.svg"
 import { Link } from 'react-router-dom';
 import sliderpicture1 from '../../assets/sp6.png'
 import sliderpicture2 from '../../assets/sp2.png'
-import sliderpicture3 from '../../assets/sp3.png'
+import sliderpicture3 from '../../assets/sp8.png'
 import { motion, AnimatePresence } from "framer-motion";
 
 const textVariants = {
@@ -36,7 +36,9 @@ const Header = () => {
             text: "HIGH INTENSITY",
             title: 'WORKOUT',
             description: "FOR WEIGHT LOSS",
-            phoneNo: "+51561651165"
+            phoneNo: "+51561651165",
+            height:285,
+            width:285
         },
         {
             id: 2,
@@ -44,7 +46,9 @@ const Header = () => {
             text: "HIGH INTENSITY",
             title: 'WORKOUT',
             description: "FOR MUSCLE GAIN",
-            phoneNo: "+56561561656"
+            phoneNo: "+56561561656",
+            height:450,
+            width:450
         },
         {
             id: 3,
@@ -52,7 +56,9 @@ const Header = () => {
             text: " Wellnss & relaxing",
             title: 'YOGA',
             description: "FOR FLOURISHING AND GOOG HEALTH ",
-            phoneNo: "+789513898"
+            phoneNo: "+789513898",
+            height:285,
+            width:285
         },
     ];
 
@@ -118,9 +124,9 @@ const Header = () => {
                     </header>
 
                     {/* Slider Section */}
-                    <div className="flex w-full h-screen relative">
+                    <div className="flex w-full relative">
                         {/* Text Section */}
-                        <div className="w-1/2 h-3/5 flex flex-col justify-center p-8 pt-0 " data-aos="fade-up">
+                        <div className="w-1/2 h-3/5 flex flex-col justify-center p-8 translate-y-8 " data-aos="fade-up">
                             <motion.div className="transition-transform transform translate-y-0"
                                 initial="hidden"
                                 animate="visible"
@@ -137,7 +143,7 @@ const Header = () => {
                                     <p className="text-xs translate-y-2.5 mb-5 w-3/12 font-oswald text-white">
                                         {slides[currentSlide].phoneNo}
                                     </p>
-                                    <button className="px-2 py-1 bg-orangecolor border-2 border-orangecolor text-sm text-white font-oswald hover:bg-transparent rounded">
+                                    <button className="px-2 py-1 bg-orangecolor border border-orangecolor text-xs text-white font-oswald hover:bg-transparent duration-500 ease-out rounded">
                                         START CONSULTING
                                     </button>
                                 </motion.div>
@@ -156,17 +162,19 @@ const Header = () => {
                         </div>
 
                         {/* Image Section */}
-                        <div className="w-1/2 h-full flex items-center justify-center relative">
+                        <div className="w-1/2 flex items-center justify-center relative">
                             <AnimatePresence mode='wait'>
                                 <motion.img
                                     key={slides[currentSlide].image}  // Ensure a unique key for each image
                                     src={slides[currentSlide].image}
                                     alt={`Slide ${currentSlide + 1}`}
-                                    className="w-3/4 h-3/5 object-contain transform -translate-y-1/4"
+                                    className="object-contain transform "
                                     initial="initial"
                                     animate="animate"
                                     exit="exit"
                                     variants={imageVariants}
+                                    height={slides[currentSlide].height}
+                                    width={slides[currentSlide].width}
                                 />
                             </AnimatePresence>
                         </div>
