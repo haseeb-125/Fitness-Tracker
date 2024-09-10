@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const WorkoutClassesSection = () => {
   return (
     <>
-      <div className="py-16 bg-blackcolor">
+      <div className="py-16 bg-black">
         <section className="gap-10 text-center">
           <div className="mb-8">
             <figure className="inline-block mb-4">
@@ -16,10 +16,11 @@ const WorkoutClassesSection = () => {
             <span className="block text-xs font-semibold font-oswald text-gray-400">Build your body strong</span>
             <h2 className="text-3xl font-bold text-white font-oswald">Workout Classes</h2>
           </div>
+
           <div className="container mx-auto">
-            <div className="flex justify-center gap-6">
+            <div className="grid  m-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* Card 1 */}
-              <div className="service-data bg-blackcolor border-gray-500 border shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-orangecolor group">
+              <div className="service-data py-10 bg-black border-gray-500 border shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-orangecolor group">
                 {/* Icon */}
                 <LuDumbbell className='text-orangecolor text-2xl m-auto translate-y-10 transition-colors duration-300 group-hover:text-white' />
 
@@ -35,9 +36,9 @@ const WorkoutClassesSection = () => {
               </div>
 
               {/* Card 2 */}
-              <div className="service-data bg-blackcolor border-gray-500 border shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-orangecolor group">
+              <div className="service-data py-10 bg-black border-gray-500 border shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-orangecolor group">
                 {/* Icon */}
-                <GiBodyBalance className='text-orangecolor  text-2xl m-auto translate-y-10 transition-colors duration-300 group-hover:text-white' />
+                <GiBodyBalance className='text-orangecolor text-2xl m-auto translate-y-10 transition-colors duration-300 group-hover:text-white' />
 
                 {/* Description */}
                 <div className="px-6 py-16">
@@ -51,9 +52,9 @@ const WorkoutClassesSection = () => {
               </div>
 
               {/* Card 3 */}
-              <div className="service-data bg-blackcolor border-gray-500 border shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-orangecolor group">
+              <div className="service-data py-10 bg-black border-gray-500 border shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-orangecolor group">
                 {/* Icon */}
-                <MdAccessTime className='text-orangecolor  text-2xl m-auto translate-y-10 transition-colors duration-300 group-hover:text-white' />
+                <MdAccessTime className='text-orangecolor text-2xl m-auto translate-y-10 transition-colors duration-300 group-hover:text-white' />
 
                 {/* Description */}
                 <div className="px-6 py-16">
@@ -69,6 +70,7 @@ const WorkoutClassesSection = () => {
           </div>
         </section>
       </div>
+
 
     </>
   );

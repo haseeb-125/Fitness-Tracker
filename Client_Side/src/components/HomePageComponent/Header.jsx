@@ -28,7 +28,7 @@ const imageVariants = {
     },
 };
 
-const Header = () => {
+const Header = ({ backgroundpicture }) => {
     const slides = [
         {
             id: 1,
@@ -80,11 +80,11 @@ const Header = () => {
     };
     return (
         <>
-            <div className="relative h-[75vh]">
+            <div className="relative h-[75vh]"  >
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0">
-                    <div className="bg-black-blur h-full w-full"></div>
-                    <div className="absolute inset-0 bg-black opacity-80"></div>
+                    <div className="bg-black-blur h-full w-full" style={{ backgroundImage: `url(${backgroundpicture})` }}></div>
+                    <div className="absolute inset-0 bg-black opacity-85"></div>
                 </div>
 
                 {/* Content */}
@@ -188,24 +188,25 @@ const Header = () => {
                     </header>
 
 
-                    {/* Slider Section */}
-                    <div className="flex w-full relative">
+                    <div className="flex flex-col lg:flex-row w-full relative">
                         {/* Text Section */}
-                        <div className="w-1/2 h-3/5 flex flex-col justify-center p-8 translate-y-8 " data-aos="fade-up">
-                            <motion.div className="transition-transform transform translate-y-0"
+                        <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 translate-y-8 text-center lg:text-left" data-aos="fade-up">
+                            <motion.div className="transition-transform transform translate-y-12"
                                 initial="hidden"
                                 animate="visible"
                                 key={currentSlide} // Ensures animation runs on slide change
                             >
-                                <motion.p className="text-lg mb-4  text-orangecolor uppercase font-oswald" custom={0}  // Index 0 for the title
-                                    variants={textVariants} >{slides[currentSlide].text}</motion.p>
-                                <motion.h2 className="text-4xl font-extrabold mb-5 text-white"
-                                    custom={1} variants={textVariants}>{slides[currentSlide].title}</motion.h2>
-                                <motion.p className="text-xl font-oswald mb-8 text-white"
-                                    custom={2} variants={textVariants}>{slides[currentSlide].description}</motion.p>
-                                <motion.div className="flex items-center"
-                                    custom={3} variants={textVariants}>
-                                    <p className="text-xs translate-y-2.5 mb-5 w-3/12 font-oswald text-white">
+                                <motion.p className="text-lg mb-4 text-orangecolor uppercase font-oswald" custom={0} variants={textVariants}>
+                                    {slides[currentSlide].text}
+                                </motion.p>
+                                <motion.h2 className="text-3xl lg:text-4xl font-extrabold mb-5 text-white" custom={1} variants={textVariants}>
+                                    {slides[currentSlide].title}
+                                </motion.h2>
+                                <motion.p className="text-xl font-oswald mb-8 text-white" custom={2} variants={textVariants}>
+                                    {slides[currentSlide].description}
+                                </motion.p>
+                                <motion.div className="flex flex-col items-center lg:flex-row lg:items-center" custom={3} variants={textVariants}>
+                                    <p className="text-xs mb-5 lg:translate-y-2.5 w-3/12 font-oswald text-white">
                                         {slides[currentSlide].phoneNo}
                                     </p>
                                     <button className="px-2 py-1 bg-orangecolor border border-orangecolor text-xs text-white font-oswald hover:bg-transparent duration-500 ease-out rounded">
@@ -213,13 +214,13 @@ const Header = () => {
                                     </button>
                                 </motion.div>
                             </motion.div>
+
                             {/* Navigation Buttons */}
-                            <div className="flex space-x-5 mt-8">
+                            <div className="flex justify-center lg:justify-start space-x-5 translate-y-24">
                                 {slides.map((slide, index) => (
                                     <button
                                         key={slide.id}
-                                        className={`w-6 h-0.5 rounded-sm ${currentSlide === index ? 'bg-orangecolor' : 'bg-gray-300'
-                                            }`}
+                                        className={`w-6 h-0.5 rounded-sm ${currentSlide === index ? 'bg-orangecolor' : 'bg-gray-300'}`}
                                         onClick={() => handleSlideChange(index)}
                                     ></button>
                                 ))}
@@ -227,13 +228,13 @@ const Header = () => {
                         </div>
 
                         {/* Image Section */}
-                        <div className="w-1/2 flex items-center justify-center relative">
+                        <div className="w-full lg:w-1/2 flex items-center justify-center relative mt-16 lg:mt-0 translate-y-5 lg:translate-y-14 lg:order-2 hidden sm:flex">
                             <AnimatePresence mode='wait'>
                                 <motion.img
                                     key={slides[currentSlide].image}  // Ensure a unique key for each image
                                     src={slides[currentSlide].image}
                                     alt={`Slide ${currentSlide + 1}`}
-                                    className="object-contain transform "
+                                    className="object-contain transform"
                                     initial="initial"
                                     animate="animate"
                                     exit="exit"
@@ -244,6 +245,8 @@ const Header = () => {
                             </AnimatePresence>
                         </div>
                     </div>
+
+
 
                 </div>
             </div>

@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 .bg-black-blur {
-    background-image: url('https://theironoffice.com/cdn/shop/files/Gym_12.23-19.jpg?v=1701994187&width=3840');
     background-size: cover;
     background-position: center;
     background-color: rgba(0, 0, 0, 0.5);

@@ -4,10 +4,11 @@ import team2 from '../../assets/team2.png'
 import team3 from '../../assets/team3.png'
 import team4 from '../../assets/team4.png'
 
+
 export const MeetTrainerSection = () => {
     return (
         <>
-            <section className="py-10 lg:py-20 bg-black">
+           <section className="py-10 lg:py-20 px-8 bg-black">
                 <div className="container mx-auto">
                     <div className="flex flex-col lg:flex-row ">
                         <div className="lg:w-1/2 mb-6 lg:mb-0">
@@ -134,6 +135,7 @@ export const MeetTrainerSection = () => {
                     </div>
                 </div>
             </section>
+
 
         </>
     )
