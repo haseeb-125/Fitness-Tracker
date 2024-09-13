@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/ReactToastify.css';
 import { useAuth } from './AuthContext.jsx';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import logo from './assets/logo-2.svg'
@@ -65,12 +65,12 @@ const Login = () => {
             </video> */}
             {/* background Image */}
             <div className="absolute inset-0">
-                    <div className="bg-black-blur h-full w-full" style={{ backgroundImage: `url(${loginbanner})` }}></div>
-                    <div className="absolute inset-0 bg-black opacity-70"></div>
-                </div>
+                <div className="bg-black-blur h-full w-full" style={{ backgroundImage: `url(${loginbanner})` }}></div>
+                <div className="absolute inset-0 bg-black opacity-70"></div>
+            </div>
             <div className="relative max-w-md w-full rounded-lg  overflow-hidden z-10">
                 <div className="px-6 py-8 backdrop-blur-lg ">
-                    <img src={logo} alt="logo" className="h-16 md:w-40 m-auto"/>
+                    <img src={logo} alt="logo" className="h-16 md:w-40 m-auto" />
                     <h2 className="text-center text-3xl font-extrabold text-orangecolor login-header font-oswald paragraph">Login</h2>
                     <form className="mt-8 space-y-6" onSubmit={onSubmit}>
                         <div className="rounded-md shadow-sm space-y-4">
