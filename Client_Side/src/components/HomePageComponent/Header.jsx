@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import logo from "../../assets/logo-2.svg"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import sliderpicture1 from '../../assets/sp6.png'
 import sliderpicture2 from '../../assets/sp2.png'
 import sliderpicture3 from '../../assets/sp8.png'
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from '../../AuthContext';
 
 const textVariants = {
     hidden: { opacity: 0, y: 50 },  // Start below and invisible
@@ -65,6 +66,31 @@ const Header = ({ backgroundpicture }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [user, setUser] = useState([]);
+    const navigate = useNavigate();
+    const { logout } = useAuth();
+    let timer;
+
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+    };
+
+    useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        if (storedUser) {
+            setUser({
+                username: storedUser.username,
+                profileImage: storedUser.profileImage,
+            });
+        }
+    }, []);
+
+    const imageSrc = user?.profileImage
+        ? `http://localhost:3000/${user.profileImage}`
+        : `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYYnc4kjeZGceD1cVSBLJOSJYnbgSoNJY-mA&s`;
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -108,20 +134,33 @@ const Header = ({ backgroundpicture }) => {
                         </nav>
 
                         {/* Profile for large screens */}
-                        <div className="hidden md:block relative text-white group">
+
+                        <div className="hidden md:flex items-center relative text-white group space-x-2">
+                            <span className="font-semibold font-oswald text-white">{user?.username}</span>
                             <img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYYnc4kjeZGceD1cVSBLJOSJYnbgSoNJY-mA&s"
+                                src={imageSrc}
                                 alt="Profile"
                                 className="w-10 h-10 rounded-full cursor-pointer"
                             />
                             {/* Hover Menu */}
-                            <ul className="absolute -right-3 bg-black text-gray-400 w-18 rounded shadow-lg p-2 space-y-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-50">
-                                <li><a href="#" className="hover:text-orangecolor font-oswald">Profile</a></li>
-                                <li><a href="#" className="hover:text-orangecolor font-oswald">Settings</a></li>
-                                <li><a href="#" className="hover:text-orangecolor font-oswald">Logout</a></li>
-                                <li><a href="#" className="hover:text-orangecolor font-oswald">Help</a></li>
+                            <ul className="absolute top-full bg-black text-gray-400 w-full cursor-pointer rounded shadow-lg p-2 space-y-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-50">
+                                <li>
+                                    <Link
+                                        to="/profilepage"
+                                        className="hover:text-orangecolor font-oswald">Profile
+                                    </Link>
+                                </li>
+                                <li>
+                                    <button
+                                        onClick={handleLogout}
+                                        className="hover:text-orangecolor font-oswald cursor-pointer"
+                                    >
+                                        Logout
+                                    </button>
+                                </li>
                             </ul>
                         </div>
+
 
                         {/* Toggle button for small screens */}
                         <div className="md:hidden">
@@ -162,22 +201,34 @@ const Header = ({ backgroundpicture }) => {
                                         </ul>
                                     </nav>
 
-                                    {/* Profile for small screens */}
-                                    <div className="text-white md:hidden"> {/* Hidden on medium and larger screens */}
-                                        <div className="relative text-white group">
-                                            <img
-                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYYnc4kjeZGceD1cVSBLJOSJYnbgSoNJY-mA&s"
+                                    {/* Profile for small screens */}                                    
+                                     <div className="text-white md:hidden"  onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)} >  {/* Toggle profile menu on click for small screens Hidden on medium and larger screens  */} 
+                                        <div className="relative text-white group ">
+                                            <div className='flex gap-2 items-center'><img
+                                                src={imageSrc}
                                                 alt="Profile"
                                                 className="w-10 h-10 rounded-full cursor-pointer"
-                                                onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)} // Toggle profile menu on click for small screens
+                                               
                                             />
+                                                <span className="font-semibold font-oswald text-white">{user?.username}</span>
+                                            </div>
                                             {/* Submenu for small screens */}
                                             {isProfileMenuOpen && (
                                                 <ul className="bg-transparent text-white-700 rounded shadow-lg p-1 space-y-2 mt-4">
-                                                    <li><a href="#" className="hover:text-orangecolor font-oswald">Profile</a></li>
-                                                    <li><a href="#" className="hover:text-orangecolor font-oswald">Settings</a></li>
-                                                    <li><a href="#" className="hover:text-orangecolor font-oswald">Logout</a></li>
-                                                    <li><a href="#" className="hover:text-orangecolor font-oswald">Help</a></li>
+                                                    <li>
+                                                        <Link
+                                                            to="/profilepage"
+                                                            className="hover:text-orangecolor font-oswald">Profile
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <button
+                                                            onClick={handleLogout}
+                                                            className="hover:text-orangecolor font-oswald cursor-pointer"
+                                                        >
+                                                            Logout
+                                                        </button>
+                                                    </li>
                                                 </ul>
                                             )}
                                         </div>
@@ -248,8 +299,8 @@ const Header = ({ backgroundpicture }) => {
 
 
 
-                </div>
-            </div>
+                </div >
+            </div >
         </>
     );
 }

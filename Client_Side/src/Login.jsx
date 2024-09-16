@@ -35,7 +35,7 @@ const Login = () => {
 
 
 
-            navigate('/web');
+            navigate('/home');
             toast.success(`Welcome, ${user.username}!`);
         } catch (err) {
             if (err.response && err.response.data) {
