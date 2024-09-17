@@ -3,6 +3,7 @@ import Header from './HomePageComponent/Header.jsx';
 import WorkoutClassesSection from './HomePageComponent/WorkoutClassesSection.jsx';
 import AboutStyle from './HomePageComponent/AboutStyle.jsx';
 import { MeetTrainerSection } from './HomePageComponent/MeetTrainerSection.jsx';
+import { ContactUs } from './Contact.jsx';
 const Home = ()=> {
   return (
     <>
@@ -10,6 +11,7 @@ const Home = ()=> {
    <WorkoutClassesSection/>
   <AboutStyle/>
   <MeetTrainerSection/>
+  <ContactUs/>
    </>
   );
 }
