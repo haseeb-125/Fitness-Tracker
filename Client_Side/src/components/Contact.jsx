@@ -40,7 +40,7 @@ export const ContactUs = () => {
                 <div className="flex flex-wrap">
                     <div className="lg:w-7/12 w-full mb-8 lg:mb-0">
                         <div className="data bg-black p-8">
-                            <p className="text-gray-700 mb-6 font-oswald">
+                            <p className="text-gray-500 mb-6 font-oswald">
                                 Have questions or want to chat? Fill out our contact form, and we’ll put you in touch with the right people.
                             </p>
                             <form ref={form} onSubmit={sendEmail} className="content-form">
@@ -92,7 +92,7 @@ export const ContactUs = () => {
                     </div>
                     <div className="lg:w-5/12 w-full">
                         <div className="info bg-blackcolor p-8 shadow-lg">
-                            <ul className="contact space-y-12">
+                            <ul className="contact space-y-6">
                                 {/* Address Section */}
                                 <li className="flex items-center">
                                     <CiLocationOn className="text-red-500 text-2xl mr-4" />

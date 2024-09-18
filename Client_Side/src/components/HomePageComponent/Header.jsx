@@ -101,11 +101,12 @@ const Header = ({ backgroundpicture }) => {
                         <nav className="hidden md:flex text-white">
                             <ul className="flex space-x-6">
                                 <li><Link to="/" className="hover:text-orangecolor font-oswald">Home</Link></li>
-                                <li><Link to="/" className="hover:text-orangecolor font-oswald">About</Link></li>
+                                <li><Link to="/About" className="hover:text-orangecolor font-oswald">About</Link></li>
                                 <li><Link to="/" className="hover:text-orangecolor font-oswald">Classes</Link></li>
                                 <li><Link to="/" className="hover:text-orangecolor font-oswald">Contact</Link></li>
                             </ul>
                         </nav>
+                        
 
                         {/* Profile for large screens */}
                         <div className="hidden md:block relative text-white group">
