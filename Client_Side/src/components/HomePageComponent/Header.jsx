@@ -29,6 +29,7 @@ const imageVariants = {
     },
 };
 
+
 const Header = ({ backgroundpicture }) => {
     const slides = [
         {
@@ -66,7 +67,8 @@ const Header = ({ backgroundpicture }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+    // const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
     const [user, setUser] = useState([]);
     const navigate = useNavigate();
     const { logout } = useAuth();
@@ -104,6 +106,19 @@ const Header = ({ backgroundpicture }) => {
     const handleSlideChange = (index) => {
         setCurrentSlide(index);
     };
+
+    // Function to open modal
+    const openModal = () => {
+        setIsProfileModalOpen(true);
+        setIsModalOpen(false); 
+    };
+
+    // Function to close modal
+    const closeModal = () => {
+        setIsProfileModalOpen(false);
+        setIsProfileMenuOpen(false);
+        setIsModalOpen(false); 
+    };
     return (
         <>
             <div className="relative h-[75vh]"  >
@@ -118,15 +133,16 @@ const Header = ({ backgroundpicture }) => {
                     <header className="flex justify-between items-center ">
                         {/* Logo */}
                         <div className="text-white ">
-                            <Link to="/">
-                                <img src={logo} alt="logo" className="h-12 md:w-28 " />
+                            <Link to="/home">
+                                <img src={logo} alt="logo" className="h-12 md:w-28" />
                             </Link>
                         </div>
 
                         {/* Navigation for large screens */}
                         <nav className="hidden md:flex text-white">
-                            <ul className="flex space-x-6">
-                                <li><Link to="/" className="hover:text-orangecolor font-oswald">Home</Link></li>
+                            <ul className="flex space-x-6 ">
+                                <li><Link to='/db/dashboard' className="hover:text-orangecolor font-oswald">Dashboard</Link></li>
+                                <li><Link to="/home" className="hover:text-orangecolor font-oswald">Home</Link></li>
                                 <li><Link to="/" className="hover:text-orangecolor font-oswald">About</Link></li>
                                 <li><Link to="/" className="hover:text-orangecolor font-oswald">Classes</Link></li>
                                 <li><Link to="/" className="hover:text-orangecolor font-oswald">Contact</Link></li>
@@ -136,18 +152,19 @@ const Header = ({ backgroundpicture }) => {
                         {/* Profile for large screens */}
 
                         <div className="hidden md:flex items-center relative text-white group space-x-2">
-                            <span className="font-semibold font-oswald text-white">{user?.username}</span>
+                            <span className="font-semibold font-oswald text-white group-hover:text-orangecolor transition-all duration-500 ">{user?.username}</span>
                             <img
                                 src={imageSrc}
                                 alt="Profile"
                                 className="w-10 h-10 rounded-full cursor-pointer"
+                                onClick={openModal}
                             />
                             {/* Hover Menu */}
                             <ul className="absolute top-full bg-black text-gray-400 w-full cursor-pointer rounded shadow-lg p-2 space-y-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-50">
                                 <li>
                                     <Link
                                         to="/profilepage"
-                                        className="hover:text-orangecolor font-oswald">Profile
+                                        className="hover:text-orangecolor font-oswald">My Profile
                                     </Link>
                                 </li>
                                 <li>
@@ -155,12 +172,30 @@ const Header = ({ backgroundpicture }) => {
                                         onClick={handleLogout}
                                         className="hover:text-orangecolor font-oswald cursor-pointer"
                                     >
-                                        Logout
+                                        Log Out
                                     </button>
                                 </li>
                             </ul>
                         </div>
-
+                        {/* Modal for enlarged image */}
+                        {isProfileModalOpen && (
+                            <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+                                <div className="relative">
+                                    <img
+                                        src={imageSrc}
+                                        alt="Enlarged Profile"
+                                        className="max-w-96 max-h-fit object-contain "
+                                    />
+                                    {/* Close button */}
+                                    <button
+                                        onClick={closeModal}
+                                        className="absolute top-0 right-0  mr-4 text-orangecolor text-5xl"
+                                    >
+                                        &times;
+                                    </button>
+                                </div>
+                            </div>
+                        )}
 
                         {/* Toggle button for small screens */}
                         <div className="md:hidden">
@@ -186,29 +221,30 @@ const Header = ({ backgroundpicture }) => {
 
                                     {/* Logo */}
                                     <div className="mb-8 ">
-                                        <Link to="/" onClick={() => setIsModalOpen(false)}>
-                                            <img src={logo} alt="logo" className="h-12 w-36 " />
+                                        <Link to="/home" onClick={() => setIsModalOpen(false)}>
+                                            <img src={logo} alt="logo" className="h-12 w-36  " />
                                         </Link>
                                     </div>
 
                                     {/* Navigation */}
                                     <nav className="text-white mb-8">
-                                        <ul className="space-y-6">
-                                            <li><Link to="/" className="hover:text-orangecolor font-oswald" onClick={() => setIsModalOpen(false)}>Home</Link></li>
+                                        <ul className="space-y-6 hover:text-orangecolor font-oswald">
+                                            <li><Link to='/db/dashboard' className="hover:text-orangecolor font-oswald" onClick={() => setIsModalOpen(false)}>Dashboard</Link></li>
+                                            <li><Link to="/home" className="hover:text-orangecolor font-oswald" onClick={() => setIsModalOpen(false)}>Home</Link></li>
                                             <li><Link to="/" className="hover:text-orangecolor font-oswald" onClick={() => setIsModalOpen(false)}>About</Link></li>
                                             <li><Link to="/" className="hover:text-orangecolor font-oswald" onClick={() => setIsModalOpen(false)}>Classes</Link></li>
                                             <li><Link to="/" className="hover:text-orangecolor font-oswald" onClick={() => setIsModalOpen(false)}>Contact</Link></li>
                                         </ul>
                                     </nav>
 
-                                    {/* Profile for small screens */}                                    
-                                     <div className="text-white md:hidden"  onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)} >  {/* Toggle profile menu on click for small screens Hidden on medium and larger screens  */} 
+                                    {/* Profile for small screens */}
+                                    <div className="text-white md:hidden" onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)} >  {/* Toggle profile menu on click for small screens Hidden on medium and larger screens  */}
                                         <div className="relative text-white group ">
                                             <div className='flex gap-2 items-center'><img
                                                 src={imageSrc}
                                                 alt="Profile"
                                                 className="w-10 h-10 rounded-full cursor-pointer"
-                                               
+                                                onClick={openModal}
                                             />
                                                 <span className="font-semibold font-oswald text-white">{user?.username}</span>
                                             </div>
@@ -218,7 +254,7 @@ const Header = ({ backgroundpicture }) => {
                                                     <li>
                                                         <Link
                                                             to="/profilepage"
-                                                            className="hover:text-orangecolor font-oswald">Profile
+                                                            className="hover:text-orangecolor font-oswald">My Profile
                                                         </Link>
                                                     </li>
                                                     <li>
@@ -226,13 +262,16 @@ const Header = ({ backgroundpicture }) => {
                                                             onClick={handleLogout}
                                                             className="hover:text-orangecolor font-oswald cursor-pointer"
                                                         >
-                                                            Logout
+                                                            Log Out
                                                         </button>
                                                     </li>
                                                 </ul>
                                             )}
                                         </div>
                                     </div>
+
+
+
                                 </div>
                             </div>
                         )}

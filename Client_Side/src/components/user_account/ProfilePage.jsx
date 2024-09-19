@@ -44,28 +44,30 @@ const ProfilePage = () => {
             <div className="absolute inset-0 bg-black opacity-50"></div>
 
             {/* Blurred profile section */}
-            <div className="relative backdrop-blur-lg max-w-md w-full z-10 p-8 bg-white bg-opacity-10 rounded-lg shadow-lg">
+            <div className="relative backdrop-blur-lg max-w-md w-full tracking-widest z-10 p-8 bg-white bg-opacity-10 rounded-lg shadow-lg">
                 <h2 className="text-center text-3xl font-extrabold font-oswald text-gray-100 mb-4">Profile</h2>
 
                 {loading ? (
                     <p className="text-lg text-gray-600">Loading...</p>
                 ) : user ? (
                     <div className="bg-transparent overflow-hidden w-full max-w-md text-gray-100">
-                        <div className="w-fit h-fit flex items-center justify-center">
+                        <div className="w-full h-fit flex mb-4 px-6 py-4">
                             <img
                                 src={imageSrc}
                                 alt="Profile"
-                                className="h-2/3 w-2/3 object-cover"
+                                className="w-44 h-44 object-contain rounded-full mb-4 mx-auto"
                                 onError={(e) => (e.currentTarget.src = 'default-profile.png')}
                             />
                         </div>
                         <div className="py-5 flex flex-col items-center">
+                            <div className='flex flex-col items-start -translate-x-6 '>
                             <p className="text-lg font-oswald mb-2">
-                                <strong className='font-oswald'>Username:</strong> {user.username}
+                                <strong className='font-oswald text-orangecolor'>Username:</strong> {user.username}
                             </p>
                             <p className="text-lg mb-4 font-oswald">
-                                <strong className='font-oswald'>Email:</strong> {user.email}
+                                <strong className='font-oswald text-orangecolor'>Email:</strong> {user.email}
                             </p>
+                            </div>
                             <Link to={`/update/${user._id}`}>
                                 <button className="relative flex h-10 w-full items-center justify-center overflow-hidden bg-transparent text-white  transition-all before:absolute before:h-0 before:w-0 before:rounded-full before:bg-orangecolor before:duration-500 before:ease-out hover:shadow-orange-600 hover:before:h-56 hover:before:w-56">
                                 <span className='relative w-96 font-oswald '>EDIT PROFILE</span>

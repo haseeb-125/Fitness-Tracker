@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
-// import Sidebar from '../components/Sidebar';
-// import Header from '../components/Header';
+import Sidebar from './components/Dashboard/Sidebar';
+import Header from './components/Dashboard/DbHeader';
 // import CategoryList from '../components/Workout_Tracking/Category/CategoryList';
 // import CreateCategory from '../components/Workout_Tracking/Category/CreateCategory';
 // import CategoryEdit from '../components/Workout_Tracking/Category/CategoryEdit';
@@ -24,11 +24,9 @@ import { ToastContainer, toast } from 'react-toastify';
 // import ProgressList from '../components/Progress_Tracking/ProgressList';
 // import EditProgress from '../components/Progress_Tracking/EditProgress';
 // import ProgressChart from '../components/Progress_Tracking/ProgressChart';
-// import Dashboard from '../components/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard';
 // import FitnessApp from '../components/FitnessApp';
 // import MainReminder from '../components/MainReminder';
-
-
 import Logout from './components/user_account/Logout';
 
 const Db = () => {
@@ -52,11 +50,11 @@ const Db = () => {
         
       
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/createCategory" element={<CreateCategory />} />
-          <Route path="/categoryList" element={<CategoryList />} />
-          <Route path="/category/:id" element={<CategoryEdit />} />
-          <Route path="/createTag" element={<CreateTag />} />
-          <Route path="/tagList" element={<TagList />} />
+          {/* <Route path="/createCategory" element={<CreateCategory />} /> */}
+          {/* <Route path="/categoryList" element={<CategoryList />} /> */}
+          {/* <Route path="/category/:id" element={<CategoryEdit />} /> */}
+          {/* <Route path="/createTag" element={<CreateTag />} /> */}
+          {/* <Route path="/tagList" element={<TagList />} />
           <Route path="/editTag/:id" element={<EditTag />} />
           <Route path="/createRoutine" element={<CreateRoutine />} />
           <Route path="/routineList" element={<RoutineList />} />
@@ -73,7 +71,7 @@ const Db = () => {
           <Route path="/editProgress/:id" element={<EditProgress />} />
           <Route path="/progressChart" element={<ProgressChart />} />
           <Route path="/fitnessApp" element={<FitnessApp />} />
-          <Route path="/mainReminder" element={<MainReminder/>} />
+          <Route path="/mainReminder" element={<MainReminder/>} /> */}
           <Route path="/logout" element={<Logout />} />
         </Routes>
         </div>
