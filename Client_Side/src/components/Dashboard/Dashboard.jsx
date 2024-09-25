@@ -126,9 +126,9 @@ const Dashboard = () => {
                 <NutritionAnalytics nutritions={nutritions} />
             </div>
 
-            <div className="container mx-auto px-4 py-8">
-                <h1 className="text-3xl font-bold mb-6">Workout Analytics</h1>
-                <WorkoutChart
+            <div className="container mx-auto px-4 py-8 ">
+                <h1 className="text-3xl font-bold m-6">Workout Analytics</h1>
+                <WorkoutChart 
                     weightData={weightData}
                     frequencyData={frequencyData}
                     historyData={historyData}
