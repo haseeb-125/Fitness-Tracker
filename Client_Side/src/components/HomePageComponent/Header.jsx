@@ -1,78 +1,16 @@
+// Header.jsx
 import React, { useEffect, useState } from 'react';
-import logo from "../../assets/logo-2.svg"
 import { Link, useNavigate } from 'react-router-dom';
-import sliderpicture1 from '../../assets/sp6.png'
-import sliderpicture2 from '../../assets/sp2.png'
-import sliderpicture3 from '../../assets/sp8.png'
-import { motion, AnimatePresence } from "framer-motion";
+import logo from "../../assets/logo-2.svg";
 import { useAuth } from '../../AuthContext';
 
-const textVariants = {
-    hidden: { opacity: 0, y: 50 },  // Start below and invisible
-    visible: (i) => ({
-        opacity: 1,
-        y: 0,  // End at the original position
-        transition: {
-            delay: i * 0.2,  // Delay each item based on its index
-            duration: 0.5,
-            ease: "easeInOut",
-        },
-    }),
-};
-const imageVariants = {
-    initial: { opacity: 0 },  // Start hidden
-    animate: { opacity: 1 },  // Fade in
-    exit: { opacity: 0 },     // Fade out
-    transition: {
-        duration: 0.5,          // Smooth transition duration
-        ease: "easeInOut",
-    },
-};
-
-
-const Header = ({ backgroundpicture }) => {
-    const slides = [
-        {
-            id: 1,
-            image: sliderpicture3,
-            text: "HIGH INTENSITY",
-            title: 'WORKOUT',
-            description: "FOR WEIGHT LOSS",
-            phoneNo: "+51561651165",
-            height: 285,
-            width: 285
-        },
-        {
-            id: 2,
-            image: sliderpicture1,
-            text: "HIGH INTENSITY",
-            title: 'WORKOUT',
-            description: "FOR MUSCLE GAIN",
-            phoneNo: "+56561561656",
-            height: 450,
-            width: 450
-        },
-        {
-            id: 3,
-            image: sliderpicture2,
-            text: " Wellnss & relaxing",
-            title: 'YOGA',
-            description: "FOR FLOURISHING AND GOOG HEALTH ",
-            phoneNo: "+789513898",
-            height: 285,
-            width: 285
-        },
-    ];
-
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-    // const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+const Header = () => {
     const [user, setUser] = useState([]);
     const navigate = useNavigate();
     const { logout } = useAuth();
-    let timer;
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+    const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
 
     const handleLogout = () => {
         logout();
@@ -93,255 +31,140 @@ const Header = ({ backgroundpicture }) => {
         ? `http://localhost:3000/${user.profileImage}`
         : `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYYnc4kjeZGceD1cVSBLJOSJYnbgSoNJY-mA&s`;
 
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentSlide((prevSlide) =>
-                prevSlide === slides.length - 1 ? 0 : prevSlide + 1
-            );
-        }, 5000); // Change slide every 5 seconds
-        return () => clearInterval(interval);
-    }, [slides.length]);
-
-    const handleSlideChange = (index) => {
-        setCurrentSlide(index);
-    };
-
     // Function to open modal
     const openModal = () => {
         setIsProfileModalOpen(true);
-        setIsModalOpen(false); 
+        setIsModalOpen(false);
     };
 
     // Function to close modal
     const closeModal = () => {
         setIsProfileModalOpen(false);
         setIsProfileMenuOpen(false);
-        setIsModalOpen(false); 
+        setIsModalOpen(false);
     };
+
     return (
-        <>
-            <div className="relative h-[75vh]"  >
-                {/* Background Image with Overlay */}
-                <div className="absolute inset-0">
-                    <div className="bg-black-blur h-full w-full" style={{ backgroundImage: `url(${backgroundpicture})` }}></div>
-                    <div className="absolute inset-0 bg-black opacity-85"></div>
+        <header className="flex bg-black justify-between items-center p-4">
+            {/* Logo */}
+            <div className="text-white">
+                <Link to="/home">
+                    <img src={logo} alt="logo" className="h-12 md:w-28" />
+                </Link>
+            </div>
+
+            {/* Navigation for large screens */}
+            <nav className="hidden md:flex text-white">
+                <ul className="flex space-x-6">
+                    <li><Link to='/db/dashboard' className="hover:text-orangecolor font-oswald">Dashboard</Link></li>
+                    <li><Link to="/home" className="hover:text-orangecolor font-oswald">Home</Link></li>
+                    <li><Link to="/about" className="hover:text-orangecolor font-oswald">About</Link></li>
+                    <li><Link to="/" className="hover:text-orangecolor font-oswald">Classes</Link></li>
+                    <li><Link to="/" className="hover:text-orangecolor font-oswald">Contact</Link></li>
+                </ul>
+            </nav>
+
+            {/* Profile for large screens */}
+            <div className="hidden md:flex items-center relative text-white group space-x-2">
+                <span className="font-semibold font-oswald">{user?.username}</span>
+                <img
+                    src={imageSrc}
+                    alt="Profile"
+                    className="w-10 h-10 rounded-full cursor-pointer"
+                    onClick={openModal}
+                />
+                {/* Hover Menu */}
+                <ul className="absolute top-full bg-black text-gray-400 w-full cursor-pointer rounded shadow-lg p-2 space-y-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-50">
+                    <li><Link to="/profilepage" className="hover:text-orangecolor font-oswald">My Profile</Link></li>
+                    <li><span className="hover:text-orangecolor font-oswald" onClick={handleLogout}>Logout</span></li>
+                </ul>
+            </div>
+
+            {/* Toggle for small screens */}
+            <div className="flex items-center space-x-3 md:hidden">
+                <div className="text-white">
+                    <img
+                        src={imageSrc}
+                        alt="Profile"
+                        className="w-8 h-8 rounded-full cursor-pointer"
+                        onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+                    />
                 </div>
+                <button onClick={() => setIsModalOpen(!isModalOpen)}>
+                    <span className="block w-6 h-0.5 bg-white mb-1"></span>
+                    <span className="block w-6 h-0.5 bg-white mb-1"></span>
+                    <span className="block w-6 h-0.5 bg-white"></span>
+                </button>
+            </div>
 
-                {/* Content */}
-                <div className="relative z-10 p-4 inset-0">
-                    <header className="flex justify-between items-center ">
-                        {/* Logo */}
-                        <div className="text-white ">
-                            <Link to="/home">
-                                <img src={logo} alt="logo" className="h-12 md:w-28" />
-                            </Link>
-                        </div>
+            {/* Modal for small screens */}
+            <div
+                className={`fixed left-0 top-0 w-full h-full bg-opacity-50 bg-black z-50 transition-transform ${isModalOpen ? "translate-x-0" : "-translate-x-full"
+                    }`}
+            >
+                <div className="w-64 bg-gray-800 h-full flex flex-col p-4">
+                    <div className="flex justify-between items-center mb-8">
+                        <img src={logo} alt="Logo" className="h-16" />
+                        <button className="text-white" onClick={closeModal}>
+                            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" d="M10 8.586l4.95-4.95a1 1 0 011.414 0l.707.707a1 1 0 010 1.414L12.414 10l4.95 4.95a1 1 0 01-1.414 1.414l-.707-.707L10 11.414l-4.95 4.95a1 1 0 01-1.414-1.414l4.95-4.95L3.586 5.05a1 1 0 010-1.414l.707-.707a1 1 0 011.414 0L10 8.586z" clipRule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <nav className="flex flex-col space-y-4">
+                        <Link to="/home" className="text-white">Home</Link>
+                        <Link to="/" className="text-white">About</Link>
+                        <Link to="/" className="text-white">Classes</Link>
+                        <Link to="/" className="text-white">Contact</Link>
+                    </nav>
+                </div>
+            </div>
 
-                        {/* Navigation for large screens */}
-                        <nav className="hidden md:flex text-white">
-                            <ul className="flex space-x-6 ">
-                                <li><Link to='/db/dashboard' className="hover:text-orangecolor font-oswald">Dashboard</Link></li>
-                                <li><Link to="/home" className="hover:text-orangecolor font-oswald">Home</Link></li>
-                                <li><Link to="/" className="hover:text-orangecolor font-oswald">About</Link></li>
-                                <li><Link to="/" className="hover:text-orangecolor font-oswald">Classes</Link></li>
-                                <li><Link to="/" className="hover:text-orangecolor font-oswald">Contact</Link></li>
-                            </ul>
-                        </nav>
-
-                        {/* Profile for large screens */}
-
-                        <div className="hidden md:flex items-center relative text-white group space-x-2">
-                            <span className="font-semibold font-oswald text-white group-hover:text-orangecolor transition-all duration-500 ">{user?.username}</span>
+            {/* Profile Modal */}
+            {isProfileModalOpen && (
+                <div className="fixed top-0 left-0 right-0 bottom-0 bg-gray-500 bg-opacity-70 flex items-center justify-center z-50">
+                    <div className="bg-white w-1/3 rounded-lg p-4 shadow-lg relative">
+                        <button
+                            className="absolute top-2 right-2 text-gray-700"
+                            onClick={closeModal}
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                className="w-6 h-6"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        </button>
+                        <h2 className="text-xl font-semibold mb-4">User Profile</h2>
+                        <div className="flex justify-center items-center mb-4">
                             <img
                                 src={imageSrc}
                                 alt="Profile"
-                                className="w-10 h-10 rounded-full cursor-pointer"
-                                onClick={openModal}
+                                className="w-20 h-20 rounded-full"
                             />
-                            {/* Hover Menu */}
-                            <ul className="absolute top-full bg-black text-gray-400 w-full cursor-pointer rounded shadow-lg p-2 space-y-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-50">
-                                <li>
-                                    <Link
-                                        to="/profilepage"
-                                        className="hover:text-orangecolor font-oswald">My Profile
-                                    </Link>
-                                </li>
-                                <li>
-                                    <button
-                                        onClick={handleLogout}
-                                        className="hover:text-orangecolor font-oswald cursor-pointer"
-                                    >
-                                        Log Out
-                                    </button>
-                                </li>
-                            </ul>
                         </div>
-                        {/* Modal for enlarged image */}
-                        {isProfileModalOpen && (
-                            <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-                                <div className="relative">
-                                    <img
-                                        src={imageSrc}
-                                        alt="Enlarged Profile"
-                                        className="max-w-96 max-h-fit object-contain "
-                                    />
-                                    {/* Close button */}
-                                    <button
-                                        onClick={closeModal}
-                                        className="absolute top-0 right-0  mr-4 text-orangecolor text-5xl"
-                                    >
-                                        &times;
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Toggle button for small screens */}
-                        <div className="md:hidden">
-                            <button
-                                className="text-white focus:outline-none"
-                                onClick={() => setIsModalOpen(true)}
-                            >
-                                <i className="fas fa-bars text-3xl"></i> {/* FontAwesome or any icon library */}
+                        <h3 className="text-lg font-semibold mb-2 text-gray-700 text-center">
+                            {user?.username}
+                        </h3>
+                        <div className="text-center space-y-2">
+                            <Link to="/profilepage" className="text-blue-500">My Profile</Link>
+                            <button onClick={handleLogout} className="text-blue-500">
+                                Logout
                             </button>
                         </div>
-
-                        {/* Modal window for small screens */}
-                        {isModalOpen && (
-                            <div className="fixed inset-0 z-50 bg-black bg-opacity-50">
-                                <div className="bg-black w-full h-full p-4 relative">
-                                    {/* Close button */}
-                                    <button
-                                        className="absolute top-4 right-4 text-white text-3xl"
-                                        onClick={() => setIsModalOpen(false)}
-                                    >
-                                        &times;
-                                    </button>
-
-                                    {/* Logo */}
-                                    <div className="mb-8 ">
-                                        <Link to="/home" onClick={() => setIsModalOpen(false)}>
-                                            <img src={logo} alt="logo" className="h-12 w-36  " />
-                                        </Link>
-                                    </div>
-
-                                    {/* Navigation */}
-                                    <nav className="text-white mb-8">
-                                        <ul className="space-y-6 hover:text-orangecolor font-oswald">
-                                            <li><Link to='/db/dashboard' className="hover:text-orangecolor font-oswald" onClick={() => setIsModalOpen(false)}>Dashboard</Link></li>
-                                            <li><Link to="/home" className="hover:text-orangecolor font-oswald" onClick={() => setIsModalOpen(false)}>Home</Link></li>
-                                            <li><Link to="/" className="hover:text-orangecolor font-oswald" onClick={() => setIsModalOpen(false)}>About</Link></li>
-                                            <li><Link to="/" className="hover:text-orangecolor font-oswald" onClick={() => setIsModalOpen(false)}>Classes</Link></li>
-                                            <li><Link to="/" className="hover:text-orangecolor font-oswald" onClick={() => setIsModalOpen(false)}>Contact</Link></li>
-                                        </ul>
-                                    </nav>
-
-                                    {/* Profile for small screens */}
-                                    <div className="text-white md:hidden" onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)} >  {/* Toggle profile menu on click for small screens Hidden on medium and larger screens  */}
-                                        <div className="relative text-white group ">
-                                            <div className='flex gap-2 items-center'><img
-                                                src={imageSrc}
-                                                alt="Profile"
-                                                className="w-10 h-10 rounded-full cursor-pointer"
-                                                onClick={openModal}
-                                            />
-                                                <span className="font-semibold font-oswald text-white">{user?.username}</span>
-                                            </div>
-                                            {/* Submenu for small screens */}
-                                            {isProfileMenuOpen && (
-                                                <ul className="bg-transparent text-white-700 rounded shadow-lg p-1 space-y-2 mt-4">
-                                                    <li>
-                                                        <Link
-                                                            to="/profilepage"
-                                                            className="hover:text-orangecolor font-oswald">My Profile
-                                                        </Link>
-                                                    </li>
-                                                    <li>
-                                                        <button
-                                                            onClick={handleLogout}
-                                                            className="hover:text-orangecolor font-oswald cursor-pointer"
-                                                        >
-                                                            Log Out
-                                                        </button>
-                                                    </li>
-                                                </ul>
-                                            )}
-                                        </div>
-                                    </div>
-
-
-
-                                </div>
-                            </div>
-                        )}
-                    </header>
-
-
-                    <div className="flex flex-col lg:flex-row w-full relative">
-                        {/* Text Section */}
-                        <div className="w-full lg:w-1/2 flex flex-col justify-center p-8 translate-y-8 text-center lg:text-left" data-aos="fade-up">
-                            <motion.div className="transition-transform transform translate-y-12"
-                                initial="hidden"
-                                animate="visible"
-                                key={currentSlide} // Ensures animation runs on slide change
-                            >
-                                <motion.p className="text-lg mb-4 text-orangecolor uppercase font-oswald" custom={0} variants={textVariants}>
-                                    {slides[currentSlide].text}
-                                </motion.p>
-                                <motion.h2 className="text-3xl lg:text-4xl font-extrabold mb-5 text-white" custom={1} variants={textVariants}>
-                                    {slides[currentSlide].title}
-                                </motion.h2>
-                                <motion.p className="text-xl font-oswald mb-8 text-white" custom={2} variants={textVariants}>
-                                    {slides[currentSlide].description}
-                                </motion.p>
-                                <motion.div className="flex flex-col items-center lg:flex-row lg:items-center" custom={3} variants={textVariants}>
-                                    <p className="text-xs mb-5 lg:translate-y-2.5 w-3/12 font-oswald text-white">
-                                        {slides[currentSlide].phoneNo}
-                                    </p>
-                                    <button className="px-2 py-1 bg-orangecolor border border-orangecolor text-xs text-white font-oswald hover:bg-transparent duration-500 ease-out rounded">
-                                        START CONSULTING
-                                    </button>
-                                </motion.div>
-                            </motion.div>
-
-                            {/* Navigation Buttons */}
-                            <div className="flex justify-center lg:justify-start space-x-5 translate-y-24">
-                                {slides.map((slide, index) => (
-                                    <button
-                                        key={slide.id}
-                                        className={`w-6 h-0.5 rounded-sm ${currentSlide === index ? 'bg-orangecolor' : 'bg-gray-300'}`}
-                                        onClick={() => handleSlideChange(index)}
-                                    ></button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Image Section */}
-                        <div className="w-full lg:w-1/2 flex items-center justify-center relative mt-16 lg:mt-0 translate-y-5 lg:translate-y-14 lg:order-2 hidden sm:flex">
-                            <AnimatePresence mode='wait'>
-                                <motion.img
-                                    key={slides[currentSlide].image}  // Ensure a unique key for each image
-                                    src={slides[currentSlide].image}
-                                    alt={`Slide ${currentSlide + 1}`}
-                                    className="object-contain transform"
-                                    initial="initial"
-                                    animate="animate"
-                                    exit="exit"
-                                    variants={imageVariants}
-                                    height={slides[currentSlide].height}
-                                    width={slides[currentSlide].width}
-                                />
-                            </AnimatePresence>
-                        </div>
                     </div>
-
-
-
-                </div >
-            </div >
-        </>
+                </div>
+            )}
+        </header>
     );
-}
+};
 
 export default Header;

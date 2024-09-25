@@ -9,6 +9,8 @@ import ProtectedRoute from './ProtectedRoute.jsx'
 import ProfilePage from './components/user_account/ProfilePage.jsx';
 import EditProfile from './components/user_account/EditProfile.jsx'
 import Db from './Db.jsx'
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import AboutSection from './components/About.jsx';
 const App = () => {
   return (
     <>
@@ -17,6 +19,7 @@ const App = () => {
           <Route path='/' element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<AboutSection />} />
           <Route path="/profilepage" element={<ProtectedRoute element={ProfilePage} />} />
           <Route path="/update/:userId" element={<ProtectedRoute element={EditProfile} />} />
           <Route path="/db/*" element={<ProtectedRoute element={Db} />} />

@@ -8,34 +8,36 @@ import team4 from '../../assets/team4.png'
 export const MeetTrainerSection = () => {
     return (
         <>
-           <section className="py-10 lg:py-20 px-8 bg-black">
+            <section className="py-10 lg:py-20 px-8 bg-black">
                 <div className="container mx-auto">
                     <div className="flex flex-col lg:flex-row ">
                         <div className="lg:w-1/2 mb-6 lg:mb-0">
                             <div className="lg:text-left">
-                                <span className="text-gray-500 text-xs font-oswald">Meet Experts Trainers</span>
-                                <h2 className="text-3xl lg:text-4xl font-oswald text-white mt-2">Expert Coaches</h2>
+                                <span className="text-gray-500 text-xs md:text-sm lg:text-3xl font-oswald">Meet Experts Trainers</span>
+                                <h2 className="text-3xl lg:text-5xl font-oswald text-white mt-2">Expert Coaches</h2>
                             </div>
                         </div>
-                        
                     </div>
 
                     <div className="mt-10">
                         <div className="flex justify-between gap-6">
                             {/* Team Member 1 */}
                             <div className="team-data item group flex flex-col justify-between w-full md:w-1/4 border border-gray-400 p-4 rounded-lg">
-                                <div >
-                                    <h3 className="text-xl  text-white font-oswald">Gorden Qlark</h3>
-                                    <p className="text-xs font-oswald text-gray-500">CROSSFIT COACH</p>
+                                <div>
+                                    <h3 className="text-xl md:text-4xl text-white font-oswald">Gorden Qlark</h3>
+                                    <p className="text-xs md:text-sm lg:text-xl font-oswald text-gray-500">CROSSFIT COACH</p>
                                     <div className="team-social-media space-x-3 mt-2">
-                                        <a href="#" className="text-gray-500 hover:text-blue-500">
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
                                             <i className="fa-brands fa-facebook-f"></i>
                                         </a>
-                                        <a href="#" className="text-gray-500 hover:text-blue-500">
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
                                             <i className="fa-brands fa-twitter"></i>
                                         </a>
-                                        <a href="#" className="text-gray-500 hover:text-blue-500">
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
                                             <i className="fa-brands fa-instagram"></i>
+                                        </a>
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
+                                            <i className="fa-brands fa-linkedin-in"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -52,18 +54,21 @@ export const MeetTrainerSection = () => {
 
                             {/* Repeat for other team members */}
                             <div className="team-data item group flex flex-col justify-between w-full md:w-1/4 border border-gray-400 p-4 rounded-lg">
-                                <div >
-                                    <h3 className="text-xl text-white font-oswald">Robert Jessi</h3>
-                                    <p className="text-xs font-oswald text-gray-500">BODYBUILDING COACH</p>
+                                <div>
+                                    <h3 className="text-xl md:text-4xl text-white font-oswald">Robert Jessi</h3>
+                                    <p className="text-xs md:text-sm lg:text-xl font-oswald text-gray-500">BODYBUILDING COACH</p>
                                     <div className="team-social-media space-x-3 mt-2">
-                                        <a href="#" className="text-gray-500 hover:text-blue-500">
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
                                             <i className="fa-brands fa-facebook-f"></i>
                                         </a>
-                                        <a href="#" className="text-gray-500 hover:text-blue-500">
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
                                             <i className="fa-brands fa-twitter"></i>
                                         </a>
-                                        <a href="#" className="text-gray-500 hover:text-blue-500">
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
                                             <i className="fa-brands fa-instagram"></i>
+                                        </a>
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
+                                            <i className="fa-brands fa-linkedin-in"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -79,18 +84,21 @@ export const MeetTrainerSection = () => {
                             </div>
 
                             <div className="team-data item group flex flex-col justify-between w-full md:w-1/4 border border-gray-400 p-4 rounded-lg">
-                                <div >
-                                    <h3 className="text-xl text-white font-oswald">Moniqa Linda</h3>
-                                    <p className="text-xs font-oswald text-gray-500">FITNESS COACH</p>
+                                <div>
+                                    <h3 className="text-xl md:text-4xl text-white font-oswald">Moniqa Linda</h3>
+                                    <p className="text-xs md:text-sm lg:text-xl font-oswald text-gray-500">FITNESS COACH</p>
                                     <div className="team-social-media space-x-3 mt-2">
-                                        <a href="#" className="text-gray-500 hover:text-blue-500">
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
                                             <i className="fa-brands fa-facebook-f"></i>
                                         </a>
-                                        <a href="#" className="text-gray-500 hover:text-blue-500">
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
                                             <i className="fa-brands fa-twitter"></i>
                                         </a>
-                                        <a href="#" className="text-gray-500 hover:text-blue-500">
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
                                             <i className="fa-brands fa-instagram"></i>
+                                        </a>
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
+                                            <i className="fa-brands fa-linkedin-in"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -106,18 +114,21 @@ export const MeetTrainerSection = () => {
                             </div>
 
                             <div className="team-data item group flex flex-col justify-between w-full md:w-1/4 border border-gray-400 p-4 rounded-lg">
-                                <div >
-                                    <h3 className="text-xl  text-white font-oswald">Willimes Haniq</h3>
-                                    <p className="text-xs font-oswald text-gray-500">YOGA COACH</p>
+                                <div>
+                                    <h3 className="text-xl md:text-4xl text-white font-oswald">Willimes Haniq</h3>
+                                    <p className="text-xs md:text-sm lg:text-xl font-oswald text-gray-500">YOGA COACH</p>
                                     <div className="team-social-media space-x-3 mt-2">
-                                        <a href="#" className="text-gray-500 hover:text-blue-500">
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
                                             <i className="fa-brands fa-facebook-f"></i>
                                         </a>
-                                        <a href="#" className="text-gray-500 hover:text-blue-500">
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
                                             <i className="fa-brands fa-twitter"></i>
                                         </a>
-                                        <a href="#" className="text-gray-500 hover:text-blue-500">
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
                                             <i className="fa-brands fa-instagram"></i>
+                                        </a>
+                                        <a href="#" className="text-gray-500 hover:text-orangecolor transition-all duration-500">
+                                            <i className="fa-brands fa-linkedin-in"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -135,6 +146,7 @@ export const MeetTrainerSection = () => {
                     </div>
                 </div>
             </section>
+
 
 
         </>

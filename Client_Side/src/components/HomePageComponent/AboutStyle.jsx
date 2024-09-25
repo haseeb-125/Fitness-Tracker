@@ -31,7 +31,7 @@ const AboutStyle = () => {
                         {/* Right Side Blog */}
                         <div className="sm:w-full md:w-2/3 lg:w-1/2 mt-8 lg:mt-0" data-aos="fade-left">
                             <div className="text-start space-y-4">
-                                <span className="text-gray-400 font-oswald text-xs">Welcome to Gym On Fitness Center</span>
+                                <span className="text-gray-400 font-oswald text-sm md:text-2xl">Welcome to Gym On Fitness Center</span>
                                 <h2 className="text-3xl lg:text-4xl font-bold text-white font-oswald">
                                     Fitness Studio & Gym For Ladies or Men's
                                 </h2>

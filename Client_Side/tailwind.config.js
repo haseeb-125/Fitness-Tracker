@@ -11,6 +11,7 @@ export default {
         blackcolor:"#0a0a0a",
         textgray:"#6c7293",
         bg_black:"#191C24",
+        customgray: '#262626',
       },
       fontFamily: { 
           oswald: ['Oswald', 'sans-serif'], // Add the Oswald font here
