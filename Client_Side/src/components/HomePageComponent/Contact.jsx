@@ -24,7 +24,7 @@ export const ContactUs = () => {
     };
 
     return (
-        <section className="gap contact-form-2 py-16 bg-black">
+        <section id='ContactUs' className="gap contact-form-2 py-16 bg-black">
             <div className="heading text-center mb-12">
                 <figure className="mx-auto mb-4">
                     <img src={webicon} alt="Heading Icon" className="mx-auto" />

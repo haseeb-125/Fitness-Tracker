@@ -53,7 +53,18 @@ const AboutSection = () => {
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0">
                     <div className="bg-cover bg-center h-full w-full" style={{ backgroundImage: `url("https://theironoffice.com/cdn/shop/files/Gym_12.23-19.jpg?v=1701994187&width=3840")` }}></div>
-                    <div className="absolute inset-0 bg-black opacity-85"></div>
+                    <div className="absolute inset-0 bg-black opacity-85 flex items-center">
+                        <h1 className='text-white text-8xl font-extrabold font-oswald p-16 '>
+                            Train
+                             <span className='text-orangecolor'> hard</span>
+                             , stay 
+                             <span className='text-amber-700'> focused </span> 
+                             and 
+                            <span className='text-red-600'> achieve </span>
+                              your
+                               <span className='text-green-500'> Goals </span>
+                        </h1>
+                    </div>
                 </div>
             </div>
             <section className="gap about-first py-16 bg-black text-white">

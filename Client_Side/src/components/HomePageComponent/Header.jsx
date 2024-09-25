@@ -1,9 +1,10 @@
 // Header.jsx
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import logo from "../../assets/logo-2.svg";
 import { useAuth } from '../../AuthContext';
-
+import { Link as RouterLink } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
 const Header = () => {
     const [user, setUser] = useState([]);
     const navigate = useNavigate();
@@ -48,19 +49,24 @@ const Header = () => {
         <header className="flex bg-black justify-between items-center p-4">
             {/* Logo */}
             <div className="text-white">
-                <Link to="/home">
+                <RouterLink to="/home">
                     <img src={logo} alt="logo" className="h-12 md:w-28" />
-                </Link>
+                </RouterLink>
             </div>
 
             {/* Navigation for large screens */}
             <nav className="hidden md:flex text-white">
                 <ul className="flex space-x-6">
-                    <li><Link to='/db/dashboard' className="hover:text-orangecolor font-oswald">Dashboard</Link></li>
-                    <li><Link to="/home" className="hover:text-orangecolor font-oswald">Home</Link></li>
-                    <li><Link to="/about" className="hover:text-orangecolor font-oswald">About</Link></li>
-                    <li><Link to="/" className="hover:text-orangecolor font-oswald">Classes</Link></li>
-                    <li><Link to="/" className="hover:text-orangecolor font-oswald">Contact</Link></li>
+                    <li><RouterLink to='/db/dashboard' className="hover:text-orangecolor font-oswald">Dashboard</RouterLink></li>
+                    <li><RouterLink to="/home" className="hover:text-orangecolor font-oswald">Home</RouterLink></li>
+                    <li><RouterLink to="/about" className="hover:text-orangecolor font-oswald">About</RouterLink></li>
+                    <li>  <ScrollLink
+                        to="ClassSection" // This should match the id of your Classes section
+                        smooth={true} // Enables smooth scrolling
+                        duration={1000} // Duration of the scroll
+                        className="hover:text-orangecolor font-oswald cursor-pointer"
+                    >Class</ScrollLink></li>
+                    <li><ScrollLink to="ContactUs" smooth={true} duration={1000} className="hover:text-orangecolor cursor-pointer font-oswald">Contact</ScrollLink></li>
                 </ul>
             </nav>
 
@@ -75,7 +81,7 @@ const Header = () => {
                 />
                 {/* Hover Menu */}
                 <ul className="absolute top-full bg-black text-gray-400 w-full cursor-pointer rounded shadow-lg p-2 space-y-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-200 z-50">
-                    <li><Link to="/profilepage" className="hover:text-orangecolor font-oswald">My Profile</Link></li>
+                    <li><RouterLink to="/profilepage" className="hover:text-orangecolor font-oswald">My Profile</RouterLink></li>
                     <li><span className="hover:text-orangecolor font-oswald" onClick={handleLogout}>Logout</span></li>
                 </ul>
             </div>
@@ -111,11 +117,11 @@ const Header = () => {
                             </svg>
                         </button>
                     </div>
-                    <nav className="flex flex-col space-y-4">
-                        <Link to="/home" className="text-white">Home</Link>
-                        <Link to="/" className="text-white">About</Link>
-                        <Link to="/" className="text-white">Classes</Link>
-                        <Link to="/" className="text-white">Contact</Link>
+                    <nav className="flex flex-col space-y-4 ">
+                        <RouterLink to="/home" className="text-white">Home</RouterLink>
+                        <RouterLink to="/about" className="text-white">About</RouterLink>
+                        <ScrollLink to="ClassSection" smooth={true} duration={500} className=" cursor-pointer text-white">Classes</ScrollLink>
+                        <ScrollLink to="ContactUs" className="text-white cursor-pointer">Contact</ScrollLink>
                     </nav>
                 </div>
             </div>
@@ -155,7 +161,7 @@ const Header = () => {
                             {user?.username}
                         </h3>
                         <div className="text-center space-y-2">
-                            <Link to="/profilepage" className="text-blue-500">My Profile</Link>
+                            <RouterLink to="/profilepage" className="text-blue-500">My Profile</RouterLink>
                             <button onClick={handleLogout} className="text-blue-500">
                                 Logout
                             </button>

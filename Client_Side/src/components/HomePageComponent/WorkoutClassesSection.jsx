@@ -4,10 +4,11 @@ import { LuDumbbell } from "react-icons/lu";
 import { GiBodyBalance } from "react-icons/gi";
 import { MdAccessTime } from "react-icons/md";
 import { Link } from 'react-router-dom';
+
 const WorkoutClassesSection = () => {
   return (
     <>
-      <div className="py-16 bg-black">
+      <div id="ClassSection" className="py-16 bg-black" >
         <section className="gap-10 text-center">
           <div className="mb-8">
             <figure className="inline-block mb-4">
